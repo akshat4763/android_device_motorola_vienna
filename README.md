@@ -1,14 +1,15 @@
-# Motorola Edge 50 Neo (`vienna`) Recovery & Device Tree
+# Motorola Edge 50 Neo (`vienna`) Device Tree
 
 <p align="center">
-  <img src="https://images.unsplash.com/photo-1598327105666-5b89351aff97?q=80&w=1000&auto=format&fit=crop" alt="Motorola Edge 50 Neo" width="400px"/>
+  <img src="https://fdn2.gsmarena.com/vv/bigpic/motorola-edge-50-neo.jpg" alt="Motorola Edge 50 Neo" width="300px"/>
 </p>
 
 <p align="center">
   <img src="https://img.shields.io/badge/Device-Motorola%20Edge%2050%20Neo-blue?style=flat-square" />
   <img src="https://img.shields.io/badge/Codename-vienna-orange?style=flat-square" />
   <img src="https://img.shields.io/badge/SoC-MediaTek%20MT6878-green?style=flat-square" />
-  <img src="https://img.shields.io/badge/Maintenance-Active-success?style=flat-square" />
+  <img src="https://img.shields.io/badge/Base-CMF%20Tetris%20MT6878-purple?style=flat-square" />
+  <img src="https://img.shields.io/badge/Status-WIP%20Bringup-yellow?style=flat-square" />
 </p>
 
 ---
@@ -19,24 +20,31 @@
 | :--- | :--- |
 | **Marketing Name** | Motorola Edge 50 Neo |
 | **Codename** | `vienna` |
-| **SoC** | MediaTek Dimensity 7300 (MT6878) — 64-bit Octa-core |
-| **GPU** | Mali-G615 MC2 |
-| **Display** | 6.4-inch pOLED, 120Hz Refresh Rate, HDR10+ |
-| **Battery** | 4310 mAh with 68W TurboPower Fast Charging |
-| **Main Camera** | 50 MP (Sony Lytia-700C, OIS) + 13 MP (Ultrawide) + 10 MP (Telephoto) |
-| **Partition Layout** | A/B Dynamic Partitions (Virtual A/B) |
-| **Storage Type** | UFS |
+| **Model Variants** | XT2409 / XT2409-3 |
+| **SoC** | MediaTek Dimensity 7300 (`MT6878`) |
+| **CPU Architecture** | 4x Cortex-A78 @ 2.5 GHz + 4x Cortex-A55 @ 2.0 GHz (arm64-v8a) |
+| **GPU** | ARM Mali-G615 MC2 |
+| **Display** | 6.4" 1.5K LTPO pOLED, 120Hz, HDR10+ |
+| **Battery** | 4310 mAh, 68W TurboPower Fast Charging |
+| **Storage / RAM** | UFS 3.1 / LPDDR4X |
+| **Partition Scheme** | Virtual A/B (V/A/B) with Retrofit Super Partition |
+| **Kernel / Android Base** | Linux 6.1 (GKI) / Android 14–16 Base |
 
 ---
 
-## 🛠️ Repository Purpose
-This open-source repository provides the recovery and device configurations for building custom recovery images (OrangeFox / TWRP) and custom ROM architectures for the Motorola Edge 50 Neo. 
+## 🛠️ Bringup Overview
+
+This device tree configures AOSP/LineageOS-based custom builds for the Motorola Edge 50 Neo (`vienna`). 
+
+Because Motorola employs Treble-style platform updates with locked vendor baselines on the `MT6878` platform, this tree uses:
+* **Base Platform Plumbing:** MediaTek common framework, compiler targets, and display/audio HAL bridges ported from the CMF Phone 1 (`tetris` / MT6878).
+* **Hardware Overlay & Firmware:** Partition layouts, `fstab` entries, device trees (`dtbo`), and proprietary blobs extracted from clean stock Motorola Vienna firmware.
 
 ---
 
-## 🚀 Building Instructions
+## 🚀 Setup & Build Instructions
 
-### 1. Environment Setup
-Clone this repository into your custom recovery source tree under the correct vendor path:
+### 1. Clone the Device Tree
+Clone this repository into your ROM source tree:
 ```bash
-git clone [https://github.com/wheelfix/android_device_motorola_vienna](https://github.com/wheelfix/android_device_motorola_vienna) -b main device/motorola/vienna
+git clone [https://github.com/your-username/android_device_motorola_vienna](https://github.com/your-username/android_device_motorola_vienna) device/motorola/vienna

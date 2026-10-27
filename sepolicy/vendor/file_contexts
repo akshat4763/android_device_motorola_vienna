@@ -1,0 +1,24 @@
+# Fingerprint
+/data/vendor/goodix/gf_data(/.*)?    u:object_r:fingerprint_data_file:s0
+/vendor/bin/hw/android\.hardware\.biometrics\.fingerprint-service\				u:object_r:hal_fingerprint_default_exec:s0
+/mnt/vendor/persist/goodix(/.*)?   u:object_r:fingerprint_data_file:s0
+/sys/panel_feature(/.*)?    u:object_r:sysfs_fod:s0
+/sys/devices/platform/soc/1401a000.dsi0/hbm   u:object_r:sysfs_fod:s0
+/dev/goodix_fp     u:object_r:fingerprint_device:s0
+
+# Richtap
+/dev/aac_richtap                                                                        u:object_r:aac_richtap_dev_device:s0
+/vendor/bin/hw/android.hardware.vibrator.service                                 u:object_r:hal_vibrator_default_exec:s0
+
+# Charger
+/sys/devices/platform/nt_chg/power_supply/nt-chg/type(/.*)?                             u:object_r:sysfs_ntchg:s0
+
+# Power
+/vendor/bin/hw/android\.hardware\.power-service\.pixel-libperfmgr                       u:object_r:hal_power_default_exec:s0
+
+# touch node
+/sys/devices/platform/soc/11c22000\.i2c/i2c-2/2-0038(/.*)?    u:object_r:sysfs_touch:s0
+
+# sensor
+
+/vendor/bin/hw/vendor\.noth\.hardware\.sensor\.sensor_extension-service    u:object_r:hal_sensors_default_exec:s0

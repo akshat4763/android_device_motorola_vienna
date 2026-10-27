@@ -1,0 +1,8 @@
+# GPU sysfs labels (match your node)
+genfscon sysfs /devices/platform/13000000.mali/devfreq/available_frequencies u:object_r:sysfs_gpu:s0
+genfscon sysfs /devices/platform/13000000.mali/devfreq/min_freq             u:object_r:sysfs_gpu:s0
+
+# Perf tuning proc nodes
+genfscon proc /sys/vm/dirty_ratio               u:object_r:proc:s0
+genfscon proc /sys/vm/vfs_cache_pressure        u:object_r:proc:s0
+

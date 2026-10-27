@@ -1,0 +1,7 @@
+type proc_vibrator, fs_type, proc_type;
+type proc_touchpanel, fs_type, proc_type;
+type aac_richtap_dev_device, dev_type;
+type fingerprint_data_file, data_file_type, file_type;
+type vendor_sysfs_graphics, fs_type, sysfs_type, mlstrustedobject;
+type sysfs_fod, fs_type, sysfs_type, mlstrustedobject;
+type sysfs_touch, fs_type, sysfs_type, mlstrustedobject;

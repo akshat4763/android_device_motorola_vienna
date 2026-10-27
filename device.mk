@@ -110,6 +110,16 @@ PRODUCT_ENFORCE_RRO_TARGETS := *
 DEVICE_PACKAGE_OVERLAYS += \
     $(LOCAL_PATH)/overlay-lineage
 
+PRODUCT_PACKAGES += \
+    ApertureOverlayVienna \
+    CarrierConfigResVienna \
+    FrameworksResOverlayVienna \
+    LauncherOverlayVienna \
+    SettingsResVienna \
+    SystemUIOverlayVienna \
+    UpdaterResVienna \
+    WifiResOverlayVienna
+
 # APNs
 PRODUCT_COPY_FILES += \
     $(LOCAL_PATH)/configs/apns-conf.xml:$(TARGET_COPY_OUT_PRODUCT)/etc/apns-conf.xml

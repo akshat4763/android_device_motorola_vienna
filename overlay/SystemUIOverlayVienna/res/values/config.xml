@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!--
+/*
+** Copyright 2024, E FOUNDATION
+**
+** Licensed under the Apache License, Version 2.0 (the "License");
+** you may not use this file except in compliance with the License.
+** You may obtain a copy of the License at
+**
+**     http://www.apache.org/licenses/LICENSE-2.0
+**
+** Unless required by applicable law or agreed to in writing, software
+** distributed under the License is distributed on an "AS IS" BASIS,
+** WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+** See the License for the specific language governing permissions and
+** limitations under the License.
+*/
+-->
+<resources xmlns:xliff="urn:oasis:names:tc:xliff:document:1.2">
+    <!-- Doze: does this device support STATE_DOZE?  -->
+    <bool name="doze_display_state_supported">true</bool>
+
+<!-- Whether to enable MediaTek-specific optical dimming for UDFPS -->
+    <bool name="config_udfpsMtkGhbmDimming">true</bool>
+
+    <!-- Name of the UDFPS HBM DimLayer for the HWComposer -->
+    <string name="config_udfpsHbmDimLayer" translatable="false">NTFingerprintDimLayer</string>
+
+    <!-- UI performance hints -->
+    <bool name="config_enablePerformanceHints">true</bool>
+    <bool name="config_enableInputPerfHints">true</bool>
+    <integer name="config_inputPerfHintDurationMs">24</integer>
+    <integer name="config_recentsAnimPerfHintDurationMs">96</integer>
+
+    <!-- Blur radius behind Notification Shade -->
+    <dimen name="max_shade_window_blur_radius">14dp</dimen>
+
+    <!-- Color of the UDFPS Pressed view -->
+    <color name="config_udfpsColor">#ffffe6</color>
+</resources>

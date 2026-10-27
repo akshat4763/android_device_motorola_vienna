@@ -1,0 +1,11 @@
+# Allow graphics composer to access MediaTek GED (GPU DVFS / blur path)
+
+# GED proc node (read-only + ioctl)
+allow hal_graphics_composer_default proc_ged:chr_file { open read ioctl };
+
+# GED sysfs directory + files
+allow hal_graphics_composer_default sysfs_ged:dir search;
+allow hal_graphics_composer_default sysfs_ged:file rw_file_perms;
+
+# GPU sysfs (needed for composition / load queries)
+allow hal_graphics_composer_default sysfs_gpu:file rw_file_perms;

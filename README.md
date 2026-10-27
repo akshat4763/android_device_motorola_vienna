@@ -5,86 +5,90 @@
 </p>
 
 <p align="center">
-  <b>Android Custom ROM Bring-up Project</b>
+  <b>Experimental Android Custom ROM Development</b>
 </p>
 
 <p align="center">
   <img src="https://img.shields.io/badge/Device-Motorola%20Edge%2050%20Neo-2E86DE?style=flat-square" alt="Device"/>
   <img src="https://img.shields.io/badge/Codename-vienna-orange?style=flat-square" alt="Codename"/>
   <img src="https://img.shields.io/badge/SoC-MediaTek%20MT6878-green?style=flat-square" alt="SoC"/>
-  <img src="https://img.shields.io/badge/Status-Work%20in%20Progress-yellow?style=flat-square" alt="Development status"/>
+  <img src="https://img.shields.io/badge/Initial%20Bring--up-Complete-blue?style=flat-square" alt="Initial bring-up complete"/>
+  <img src="https://img.shields.io/badge/Status-Experimental%20%7C%20Untested-orange?style=flat-square" alt="Experimental and untested"/>
 </p>
 
 ---
 
 ## Overview
 
-This repository contains the device-specific configuration and ongoing bring-up work for the **Motorola Edge 50 Neo** (`vienna`), with the goal of enabling Android Open Source Project (AOSP)-based custom ROM development.
+This repository contains the device tree for the **Motorola Edge 50 Neo** (`vienna`), developed as a foundation for Android Open Source Project (AOSP)-based custom ROM development.
 
-The project focuses on understanding the device's hardware configuration, adapting the necessary device-specific components, and establishing a foundation for building and testing custom Android ROMs.
+The initial device-tree bring-up has been completed. The current configuration represents the first clean experimental version prepared for the next stage of development: compilation, boot testing, and hardware validation.
 
-Development is currently in progress. Hardware support, compilation, booting, and runtime functionality must be verified as development advances.
+The device tree has **not yet been validated through confirmed ROM compilation and on-device testing**. Its build compatibility, bootability, and hardware functionality therefore remain unverified.
 
 ### Project Goals
 
-- Establish a maintainable device tree for `vienna`.
-- Adapt the necessary device configuration for an AOSP-based ROM.
-- Investigate hardware compatibility and proprietary vendor dependencies.
-- Configure the required partition, boot, kernel, and recovery-related components.
-- Develop and validate SELinux policies and device-specific resource overlays.
-- Work toward a bootable custom ROM and progressively improve hardware functionality.
+- Establish a device-specific configuration for the Motorola Edge 50 Neo.
+- Prepare the initial device tree for integration with an AOSP-based ROM.
+- Investigate stock firmware, partition layouts, and hardware dependencies.
+- Identify and integrate the required proprietary vendor components.
+- Establish the configuration needed for kernel and boot-image integration.
+- Validate SELinux policies, device-specific overlays, and initialization.
+- Progress toward a bootable custom ROM with functional hardware support.
 
 ## Device Specifications
 
 | Component | Specification |
 |---|---|
 | Device | Motorola Edge 50 Neo |
-| Device codename | `vienna` |
-| Model | XT2409 series |
+| Codename | `vienna` |
+| Model family | XT2409 series |
 | Target variant | XT2409-3 |
 | Software channel | RETIN (India) |
 | SoC | MediaTek Dimensity 7300 |
 | Platform | MediaTek MT6878 |
 | CPU | Octa-core ARM64 |
 | GPU | ARM Mali-G615 MC2 |
-| Display | 6.4-inch pOLED, 1.5K, up to 120 Hz |
+| Display | 6.4-inch pOLED, 1.5K resolution, up to 120 Hz |
 | Storage | UFS 3.1 |
-| Memory | LPDDR4X |
-| Stock firmware reference | `W1UI36H.39-25-11-4` |
-| Android version of reference firmware | Android 16 |
+| RAM | LPDDR4X |
+| Reference firmware | `W1UI36H.39-25-11-4` |
+| Reference firmware Android version | Android 16 |
 | Development target | AOSP-based custom ROM |
 
-*Specifications and configuration details should be checked against the exact hardware variant and firmware used for development.*
+*Specifications describe the target device and reference firmware. Exact hardware and software configuration should be verified against the target variant.*
 
 ## Development Status
 
-**Current stage: Initial device-tree bring-up and research.**
+**Initial device-tree bring-up: Complete.**
 
-The objective is to build a reliable device-specific foundation before attempting to establish a fully functional custom ROM.
+**Current phase: Experimental validation and testing.**
 
-| Component | Status |
+The initial device-specific configuration has been assembled. The project is now ready to move into the next phase of validation, where the tree and its dependencies can be evaluated through ROM compilation, boot testing, and hardware checks.
+
+| Development stage | Status |
 |---|---|
-| Device identification and firmware research | In progress |
-| Stock firmware extraction and analysis | In progress |
-| Device-tree configuration | In progress |
-| Proprietary vendor dependency mapping | In progress |
-| Kernel and boot-image investigation | In progress |
-| SELinux policy and resource overlays | In progress |
-| Initial ROM compilation | Not yet confirmed |
-| First successful boot | Not yet confirmed |
-| Hardware functionality testing | Pending validation |
+| Device identification | Completed |
+| Initial device-tree configuration | Completed |
+| Initial clean device-tree bring-up | Completed |
+| Stock firmware research | Performed; further investigation may be needed |
+| Proprietary dependency validation | Pending verification |
+| ROM compilation | Not yet confirmed |
+| Successful on-device boot | Not yet confirmed |
+| Hardware functionality | Untested |
+| Stability testing | Pending |
 
-Statuses will be updated as components are implemented and tested. A configuration being present in the repository does not necessarily mean that the corresponding hardware feature is functional.
+These statuses distinguish completed device-tree preparation from the testing required to establish whether the configuration works correctly in practice.
 
-## Bring-up Approach
+## Bring-up Architecture
 
-The bring-up process involves investigating the stock firmware, identifying the device-specific components, and adapting the configuration required by the selected ROM source.
+The device tree is intended to provide the device-specific configuration needed to integrate `vienna` into an Android ROM build environment.
 
-### 1. Device Configuration
+The bring-up involves several related areas.
 
-The device tree is intended to contain the configuration required to identify and configure `vienna` within an Android ROM build system.
+### Device Configuration
 
-Depending on the selected ROM and the current repository contents, this may include:
+Depending on the target ROM and repository implementation, the device configuration may include:
 
 - Product and device makefiles.
 - Board configuration and build properties.
@@ -93,65 +97,77 @@ Depending on the selected ROM and the current repository contents, this may incl
 - Init scripts and hardware initialization.
 - SELinux policy.
 - Kernel and boot-image integration.
+- ROM-specific product configuration.
 
-### 2. Hardware and Vendor Dependencies
+The exact requirements depend on the selected Android platform and the structure of this repository.
 
-The device relies on proprietary components for parts of its hardware implementation. These dependencies must be identified and matched to the relevant firmware and Android platform.
+### Hardware and Vendor Integration
 
-Areas under investigation include:
+The Motorola Edge 50 Neo depends on platform-specific and proprietary components for hardware functionality.
+
+Areas requiring investigation and validation include:
 
 - MediaTek platform integration.
 - Display and graphics.
 - Camera and image processing.
-- Audio and connectivity.
-- Sensors and other hardware interfaces.
-- Vendor services and HALs.
+- Audio.
+- Connectivity.
+- Sensors.
 - Power management and charging.
+- Vendor services and hardware abstraction layers (HALs).
 
-The presence of a vendor component does not, by itself, guarantee compatibility with a different Android framework version.
+The presence of configuration files or proprietary components does not guarantee that the corresponding hardware functionality is working.
 
-### 3. Reference Device Research
+### Reference Device: CMF Phone 1 (`tetris`)
 
-The CMF Phone 1 (`tetris`), which uses the MediaTek MT6878 platform, may serve as a **reference for comparative research**.
+The CMF Phone 1 (`tetris`) uses the MediaTek MT6878 platform and may provide a useful reference for comparative device-tree research.
 
-Its configuration can help identify common platform conventions, build-system requirements, and potential starting points for investigation.
+Its configuration can help with understanding common MediaTek platform conventions, build-system integration, and potential implementation approaches.
 
-However, `tetris` and `vienna` are different devices. Any reused or adapted configuration must be reviewed against the Motorola Edge 50 Neo's own hardware, firmware, partition layout, kernel interfaces, and vendor implementation. Device-specific files must not be assumed interchangeable.
+However, `tetris` and `vienna` are different devices. Their hardware configuration, vendor implementation, firmware, partition layouts, and peripheral integration must not be assumed to be interchangeable.
 
-## Firmware Reference
+Any adapted configuration must be reviewed and adjusted for the Motorola Edge 50 Neo.
 
-The initial investigation uses stock Motorola firmware for the target device.
+## Stock Firmware Reference
 
-Reference build:
+The initial device investigation uses stock Motorola firmware as a reference for device-specific properties, partition information, boot configuration, and proprietary dependencies.
+
+Reference details:
 
 ```text
-Device:       Motorola Edge 50 Neo
-Codename:     vienna
-Model:        XT2409-3
-Channel:      RETIN
-Build:        W1UI36H.39-25-11-4
-Android:      16
+Device:           Motorola Edge 50 Neo
+Codename:         vienna
+Model:            XT2409-3
+Software channel: RETIN
+Build:            W1UI36H.39-25-11-4
+Android version:  16
 ```
 
-Firmware analysis can help identify partition images, boot configuration, device-specific properties, vendor components, and other implementation details needed during bring-up.
+Stock firmware analysis can help identify the components required for custom ROM development and provide a baseline for comparing device-specific configuration.
 
-Stock firmware is a reference for investigation, not proof that a device tree or vendor configuration is compatible with another Android version.
+Using Android 16 stock firmware as a reference does not, by itself, establish compatibility with an Android 15 or other custom ROM target. Kernel interfaces, vendor components, framework expectations, and build requirements must be evaluated for the specific target.
 
 ## Proprietary Vendor Blobs
 
-Custom ROM development may require proprietary libraries, executables, firmware files, and hardware abstraction layer components from the stock firmware.
+Custom ROM development may require proprietary libraries, executables, firmware files, and HAL components from the stock firmware.
 
-If supported by the repository's extraction scripts and blob lists, the extraction process can be run using:
+Where supported by the repository's extraction scripts and blob list, extraction may follow this general form:
 
 ```bash
 ./extract-files.sh /path/to/stock_firmware_or_dump
 ```
 
-The expected input depends on the extraction script. Some implementations require a mounted or extracted firmware image, an ADB-connected device, or a specific directory structure.
+The exact input format depends on the implementation of the extraction script. It may require an extracted firmware directory, mounted images, an ADB-connected device, or another supported input source.
 
-Before extraction, review the repository's `extract-files.sh`, `setup-makefiles.sh`, and `proprietary-files.txt` to confirm the supported workflow.
+Before running the extraction process, review:
 
-**Note:** This repository's device-specific configuration and proprietary blob mappings should be treated as separate concerns. Blob availability, licensing, and compatibility must be assessed independently.
+- `extract-files.sh`
+- `setup-makefiles.sh`
+- `proprietary-files.txt`
+
+These files should be checked to determine the expected source paths, extraction method, and required dependencies.
+
+**Important:** Proprietary blob mappings and successful extraction do not establish that the blobs are compatible with the selected ROM or Android version. Compatibility and redistribution permissions must be assessed separately.
 
 ## Getting Started
 
@@ -159,97 +175,134 @@ Before extraction, review the repository's `extract-files.sh`, `setup-makefiles.
 
 A typical Android ROM development environment requires:
 
-- A Linux build environment.
-- Git and the build dependencies documented by the selected ROM.
-- A suitable Java Development Kit (JDK).
-- The Android build tools and source tree required by the target ROM.
-- Adequate RAM and storage for the selected Android platform and build configuration.
+- A compatible Linux build environment.
+- Git and the dependencies documented by the target ROM.
+- A compatible Java Development Kit (JDK).
+- The source tree for the selected ROM.
+- Sufficient RAM and storage for the chosen Android platform.
+- Any required device-specific, common-platform, kernel, and vendor dependencies.
 
-Check the official documentation for your chosen ROM before setting up the environment.
+Follow the official build instructions for the ROM you intend to use.
 
 ### Clone the Device Tree
 
-Clone the repository into the device-specific directory of your ROM source tree:
+From the root of your ROM source tree, clone this repository into the device-specific directory:
 
 ```bash
 git clone https://github.com/akshat4763/android_device_motorola_vienna.git device/motorola/vienna
 ```
 
-Verify the repository structure and required dependencies before proceeding.
+Inspect the repository structure and verify that the files are in the expected locations.
 
-### Build Integration
+### Integrate with a ROM Source Tree
 
-The exact build commands depend on the ROM source, product configuration, branch, and build target implemented by the device tree.
+The device tree must be integrated with a compatible ROM source tree and all required dependencies.
 
-For a compatible ROM source tree, the general workflow is:
+Before attempting a build, verify:
+
+1. The device product is defined correctly.
+2. The selected ROM branch is compatible with the configuration.
+3. Required common device-tree dependencies are present.
+4. Kernel and vendor dependencies are available and correctly referenced.
+5. Proprietary blobs are mapped and extracted where required.
+6. Partition, boot-image, and filesystem configurations match the device.
+7. Required product makefiles and build targets resolve correctly.
+
+### Build Configuration
+
+Once the source tree and dependencies have been configured, initialize the ROM build environment:
 
 ```bash
 source build/envsetup.sh
 ```
 
-Select the actual product target defined by the device tree and supported by the ROM source. For example, `lineage_vienna-userdebug` is only an illustrative target name and must not be assumed to exist.
+Select the product target actually defined by the device tree and supported by the ROM source.
 
-After confirming the product configuration and required dependencies, proceed with the build using the instructions for the selected ROM.
+For example, `lineage_vienna-userdebug` would be a possible naming convention, but **it is only an example and must not be assumed to exist in this repository**.
 
-**Important:** Cloning a device tree into a ROM source tree does not automatically make the device buildable. Required common trees, vendor dependencies, kernel configuration, product definitions, and other components must also be available and correctly integrated.
+Proceed with compilation only after confirming the product configuration and build requirements against the selected ROM.
+
+A successful device-tree setup does not guarantee successful compilation. Likewise, successful compilation does not guarantee a bootable ROM.
 
 ## Testing and Validation
 
-Once a build becomes available, validation should be performed incrementally.
+The next stage is to validate the initial device tree in a controlled development environment.
 
-Recommended areas of investigation include:
+Recommended validation areas include:
 
-1. Build-system configuration and product resolution.
-2. Kernel, boot image, and device-tree compatibility.
-3. Partition layout and boot-image requirements.
-4. Boot process, init services, and SELinux denials.
-5. Display, touch, audio, camera, sensors, and connectivity.
-6. Charging, power management, and suspend/resume.
-7. Stability, logs, and regression testing.
+### Build Validation
 
-Initial testing should be performed on hardware with a verified recovery path and a backup of the original firmware.
+- Product configuration and lunch target resolution.
+- Makefile and dependency resolution.
+- Kernel and vendor integration.
+- Missing modules, libraries, and build targets.
+- Partition and boot-image configuration.
 
-Do not assume that a successful compilation means the ROM will boot, or that a successful boot means all hardware components work.
+### Boot Validation
+
+- Kernel startup.
+- Boot-image and device-tree compatibility.
+- Init service startup.
+- Filesystem mounting.
+- SELinux policy and denials.
+- Framework startup and system stability.
+
+### Hardware Validation
+
+- Display and touch.
+- Camera and image processing.
+- Audio.
+- Wi-Fi and Bluetooth.
+- Mobile network and telephony.
+- Sensors.
+- Charging and power management.
+- Suspend and resume.
+
+All functionality should be reported according to actual test results. Until validation has been performed, no hardware feature should be considered confirmed working.
 
 ## Contributing
 
 Contributions, technical feedback, and device-specific research are welcome.
 
-If you have experience with MediaTek platforms, Motorola devices, Android device trees, kernel integration, or custom ROM bring-up, consider helping with:
+If you have experience with MediaTek platforms, Motorola devices, Android device trees, kernel integration, or custom ROM bring-up, help is welcome in areas such as:
 
-- Reviewing device-specific configuration.
+- Reviewing the device-specific configuration.
 - Identifying missing dependencies.
-- Comparing reference configurations with stock firmware.
-- Debugging compilation and boot failures.
+- Comparing reference device trees with stock firmware.
+- Investigating compilation and boot failures.
 - Testing hardware functionality.
-- Improving documentation and reproducibility.
+- Improving documentation and build reproducibility.
 
-When submitting an issue or pull request, include relevant logs, the firmware version, the ROM branch, and the exact steps needed to reproduce the problem. Please avoid posting personal information or sensitive device identifiers.
+When opening an issue or pull request, include relevant logs, the target ROM and branch, the stock firmware version, and the steps needed to reproduce the problem.
 
-## Community
+Please remove personal information and sensitive device identifiers from diagnostic logs before sharing them publicly.
+
+## Community and Discussion
 
 - **GitHub Repository:** [android_device_motorola_vienna](https://github.com/akshat4763/android_device_motorola_vienna)
 - **XDA Forums:** [Motorola Edge 50 Neo Rooting & Development](https://xdaforums.com/t/rooting-motorola-edge-50-neo.4713457/)
 
-Use the GitHub issue tracker for repository-specific development issues and the XDA thread for community discussion, device research, and collaboration.
+Use GitHub for repository issues, proposed changes, and technical contributions. Use the XDA thread for community discussion, development updates, and collaboration.
 
 ## Disclaimer
 
-This project is an independent development effort and is not affiliated with, endorsed by, or supported by Motorola, Lenovo, MediaTek, or any custom ROM project unless explicitly stated.
+This is an independent community development project. It is not affiliated with, endorsed by, or supported by Motorola, Lenovo, MediaTek, or any custom ROM project unless explicitly stated.
 
-This repository is a work in progress. No claim is made that a complete, bootable, or fully functional custom ROM is currently available.
+The device tree is experimental. Although the initial device-tree bring-up is complete, successful ROM compilation, bootability, and hardware functionality have not yet been confirmed.
 
-Custom ROM development and flashing carry risks, including data loss, boot loops, and device failure. Verify all instructions for your exact device variant, maintain appropriate backups, and understand the recovery procedure before flashing anything.
+Custom ROM development and flashing can result in data loss, boot loops, or device failure. Verify compatibility with your exact device variant, keep appropriate backups, and understand the recovery procedure before flashing any images.
 
 ## License and Attribution
 
-Original device-specific work should be licensed under the terms specified in this repository's `LICENSE` file, if present.
+Original device-specific work should be distributed under the terms specified in this repository's `LICENSE` file, if present.
 
-Third-party configurations, source code, and proprietary components remain subject to their respective licenses and redistribution terms. Please retain required copyright notices and provide attribution for any code or configuration adapted from other projects.
+Third-party code and configurations remain subject to their original licenses and attribution requirements. Any adapted configuration should retain applicable copyright notices and required acknowledgements.
+
+Proprietary vendor components may be subject to separate licensing and redistribution restrictions.
 
 ---
 
 <p align="center">
   <b>Motorola Edge 50 Neo · vienna</b><br/>
-  Community-driven Android development
+  Initial bring-up complete · Experimental validation pending
 </p>
